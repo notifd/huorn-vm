@@ -1,0 +1,42 @@
+# HuornVM Demo - xcodegen project file
+name: HuornVMDemo
+options:
+  bundleIdPrefix: com.notifd
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "16.0"
+
+settings:
+  SWIFT_VERSION: "6.0"
+  MACOSX_DEPLOYMENT_TARGET: "15.0"
+  SWIFT_STRICT_CONCURRENCY: complete
+
+targets:
+  HuornVMDemo:
+    type: application
+    platform: macOS
+    sources:
+      - Sources
+    resources:
+      - Resources
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.notifd.huornvmdemo
+      INFOPLIST_KEY_CFBundleDisplayName: "HuornVM Demo"
+      INFOPLIST_KEY_NSMainStoryboardFile: ""
+      INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.developer-tools"
+      CODE_SIGN_ENTITLEMENTS: Resources/HuornVMDemo.entitlements
+    dependencies:
+      - package: HuornVM
+      - package: SwiftTerm
+    entitlements:
+      path: Resources/HuornVMDemo.entitlements
+      properties:
+        com.apple.security.virtualization: true
+        com.apple.security.app-sandbox: false
+
+packages:
+  HuornVM:
+    path: ../..
+  SwiftTerm:
+    url: https://github.com/migueldeicaza/SwiftTerm.git
+    from: 1.0.0
